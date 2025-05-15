@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ForexEdge | Premium Forex Trading Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, #1e3a8a 0%, #0ea5e9 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .blink {
+            animation: blink-animation 1.5s infinite;
+        }
+        @keyframes blink-animation {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        .trading-chart {
+            height: 300px;
+            background: #1e293b;
+            border-radius: 0.5rem;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-chart-line text-blue-600 text-2xl"></i>
+                <span class="text-xl font-bold text-gray-800">ForexEdge</span>
+            </div>
+            
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#home" class="text-blue-600 font-medium">Home</a>
+                <a href="#about" class="text-gray-700 hover:text-blue-600">About Us</a>
+                <a href="#plans" class="text-gray-700 hover:text-blue-600">Investment Plans</a>
+                <a href="#testimonials" class="text-gray-700 hover:text-blue-600">Testimonials</a>
+                <a href="#contact" class="text-gray-700 hover:text-blue-600">Contact</a>
+                <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">Login</a>
+            </div>
+            
+            <button class="md:hidden text-gray-700">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient text-white py-16 md:py-24">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-12 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Smart Forex Trading Solutions</h1>
+                <p class="text-xl mb-6">Join our premium trading platform and access expert strategies designed to maximize your returns with calculated risk management.</p>
+                
+                <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+                    <a href="#plans" class="bg-white text-blue-800 px-6 py-3 rounded-md font-bold text-center hover:bg-gray-100 transition">View Investment Plans</a>
+                    <a href="#" class="border-2 border-white px-6 py-3 rounded-md font-bold text-center hover:bg-white hover:text-blue-800 transition">Learn More</a>
+                </div>
+                
+                <div class="mt-8 flex flex-wrap gap-4">
+                    <div class="flex items-center">
+                        <i class="fas fa-shield-alt text-blue-300 mr-2"></i>
+                        <span>Secure Platform</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-chart-pie text-blue-300 mr-2"></i>
+                        <span>25% Avg. Monthly Return</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-headset text-blue-300 mr-2"></i>
+                        <span>24/5 Support</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="md:w-1/2">
+                <div class="bg-white bg-opacity-10 p-6 rounded-xl backdrop-blur-sm border border-white border-opacity-20 max-w-md mx-auto">
+                    <h3 class="text-xl font-bold mb-4">Investment Calculator</h3>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm mb-1">Investment Amount ($)</label>
+                        <input type="range" min="500" max="100000" value="5000" step="500" class="w-full mb-2">
+                        <div class="flex justify-between">
+                            <span>$500</span>
+                            <span class="font-bold">$5,000</span>
+                            <span>$100K</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm mb-1">Investment Plan</label>
+                        <select class="w-full p-2 rounded bg-white bg-opacity-10 border border-white border-opacity-20">
+                            <option>Standard (25% monthly)</option>
+                            <option>Premium (30% monthly)</option>
+                            <option>Professional (35% monthly)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="bg-blue-800 bg-opacity-50 p-4 rounded-lg mb-4">
+                        <div class="flex justify-between mb-1">
+                            <span>Estimated Monthly Return:</span>
+                            <span class="font-bold">$1,250</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Projected Annual Return:</span>
+                            <span class="font-bold">$15,000</span>
+                        </div>
+                    </div>
+                    
+                    <button class="w-full bg-yellow-400 text-blue-900 py-2 rounded font-bold hover:bg-yellow-300 transition">Start Investing</button>
+                    
+                    <p class="text-xs text-center mt-3 text-blue-200">*Projections are estimates only. Past performance is not indicative of future results.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="p-6">
+                    <div class="text-3xl font-bold text-blue-600 mb-2">$250M+</div>
+                    <div class="text-gray-600">Assets Traded</div>
+                </div>
+                <div class="p-6">
+                    <div class="text-3xl font-bold text-blue-600 mb-2">25%</div>
+                    <div class="text-gray-600">Avg. Monthly Return</div>
+                </div>
+                <div class="p-6">
+                    <div class="text-3xl font-bold text-blue-600 mb-2">15K+</div>
+                    <div class="text-gray-600">Active Traders</div>
+                </div>
+                <div class="p-6">
+                    <div class="text-3xl font-bold text-blue-600 mb-2">24/5</div>
+                    <div class="text-gray-600">Trading Support</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">About ForexEdge</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">We are a team of professional traders and financial experts dedicated to providing premium forex trading solutions.</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Trading Team" class="rounded-lg shadow-lg w-full">
+                </div>
+                
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-bold mb-4">Our Trading Philosophy</h3>
+                    <p class="text-gray-600 mb-4">At ForexEdge, we combine technical analysis, fundamental research, and algorithmic trading to identify high-probability trading opportunities in the forex markets.</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-2 rounded-full mr-4">
+                                <i class="fas fa-robot text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Algorithmic Trading</h4>
+                                <p class="text-gray-600 text-sm">Our proprietary algorithms analyze market conditions 24/5 to identify optimal entry and exit points.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-green-100 p-2 rounded-full mr-4">
+                                <i class="fas fa-shield-alt text-green-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Risk Management</h4>
+                                <p class="text-gray-600 text-sm">Strict risk parameters ensure no single trade can significantly impact your portfolio.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-purple-100 p-2 rounded-full mr-4">
+                                <i class="fas fa-graduation-cap text-purple-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Trader Education</h4>
+                                <p class="text-gray-600 text-sm">Comprehensive resources to help you understand our strategies and the forex markets.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="mt-6 bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">Learn About Our Strategies</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trading Platform Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Advanced Trading Platform</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Access real-time market data, advanced charting tools, and execute trades with our institutional-grade platform.</p>
+            </div>
+            
+            <div class="bg-gray-100 rounded-xl overflow-hidden shadow-lg">
+                <div class="flex border-b">
+                    <button class="px-6 py-3 font-medium border-b-2 border-blue-600 text-blue-600">EUR/USD</button>
+                    <button class="px-6 py-3 font-medium text-gray-600 hover:text-blue-600">GBP/USD</button>
+                    <button class="px-6 py-3 font-medium text-gray-600 hover:text-blue-600">USD/JPY</button>
+                    <button class="px-6 py-3 font-medium text-gray-600 hover:text-blue-600">XAU/USD</button>
+                </div>
+                
+                <div class="p-4">
+                    <div class="trading-chart flex items-center justify-center">
+                        <div class="text-center text-gray-400">
+                            <i class="fas fa-chart-line text-4xl mb-2"></i>
+                            <p>Live Trading Charts</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                        <div class="bg-white p-4 rounded-lg shadow">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold">EUR/USD</span>
+                                <span class="text-green-500">+0.24%</span>
+                            </div>
+                            <div class="text-2xl font-bold">1.0987</div>
+                            <div class="flex justify-between text-sm text-gray-500 mt-1">
+                                <span>High: 1.1024</span>
+                                <span>Low: 1.0955</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-4 rounded-lg shadow">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold">GBP/USD</span>
+                                <span class="text-red-500">-0.12%</span>
+                            </div>
+                            <div class="text-2xl font-bold">1.2755</div>
+                            <div class="flex justify-between text-sm text-gray-500 mt-1">
+                                <span>High: 1.2810</span>
+                                <span>Low: 1.2732</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-4 rounded-lg shadow">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold">USD/JPY</span>
+                                <span class="text-green-500">+0.35%</span>
+                            </div>
+                            <div class="text-2xl font-bold">143.22</div>
+                            <div class="flex justify-between text-sm text-gray-500 mt-1">
+                                <span>High: 143.45</span>
+                                <span>Low: 142.80</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investment Plans Section -->
+    <section id="plans" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Investment Plans</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Choose the plan that matches your investment goals and risk tolerance.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Standard Plan -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                    <div class="bg-blue-600 text-white py-4 text-center">
+                        <h3 class="text-xl font-bold">Standard</h3>
+                        <div class="text-sm opacity-80">Ideal for beginners</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-center mb-6">
+                            <div class="text-4xl font-bold text-blue-600">25%</div>
+                            <div class="text-gray-600">Monthly Return</div>
+                        </div>
+                        
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Minimum $500 investment</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Daily trading signals</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Basic risk management</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Email support</span>
+                            </li>
+                        </ul>
+                        
+                        <button class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">Choose Plan</button>
+                    </div>
+                </div>
+                
+                <!-- Premium Plan -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover transform scale-105">
+                    <div class="bg-purple-600 text-white py-4 text-center relative">
+                        <div class="absolute top-0 right-0 bg-yellow-400 text-purple-800 text-xs font-bold px-2 py-1 rounded-bl">POPULAR</div>
+                        <h3 class="text-xl font-bold">Premium</h3>
+                        <div class="text-sm opacity-80">For serious investors</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-center mb-6">
+                            <div class="text-4xl font-bold text-purple-600">30%</div>
+                            <div class="text-gray-600">Monthly Return</div>
+                        </div>
+                        
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Minimum $5,000 investment</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Advanced trading signals</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Enhanced risk management</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Priority support</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Weekly market analysis</span>
+                            </li>
+                        </ul>
+                        
+                        <button class="w-full bg-purple-600 text-white py-2 rounded hover:bg-purple-700 transition">Choose Plan</button>
+                    </div>
+                </div>
+                
+                <!-- Professional Plan -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                    <div class="bg-gray-800 text-white py-4 text-center">
+                        <h3 class="text-xl font-bold">Professional</h3>
+                        <div class="text-sm opacity-80">For high-net-worth investors</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-center mb-6">
+                            <div class="text-4xl font-bold text-gray-800">35%</div>
+                            <div class="text-gray-600">Monthly Return</div>
+                        </div>
+                        
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Minimum $25,000 investment</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Institutional-grade signals</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Custom risk parameters</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>24/5 dedicated account manager</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Daily market briefings</span>
+                            </li>
+                        </ul>
+                        
+                        <button class="w-full bg-gray-800 text-white py-2 rounded hover:bg-gray-900 transition">Choose Plan</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center">
+                <p class="text-gray-600 text-sm max-w-3xl mx-auto">*Returns are not guaranteed and may vary based on market conditions. All investments involve risk of loss. Please review our risk disclosure before investing.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Forex Trading Education</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Enhance your trading knowledge with our comprehensive educational resources.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-sm card-hover">
+                    <div class="h-40 bg-blue-600 flex items-center justify-center">
+                        <i class="fas fa-book-open text-white text-5xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Beginner's Guide</h3>
+                        <p class="text-gray-600 mb-4">Learn the fundamentals of forex trading from the ground up.</p>
+                        <a href="#" class="text-blue-600 font-medium flex items-center">
+                            Start Learning <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-sm card-hover">
+                    <div class="h-40 bg-green-600 flex items-center justify-center">
+                        <i class="fas fa-chart-bar text-white text-5xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Technical Analysis</h3>
+                        <p class="text-gray-600 mb-4">Master chart patterns, indicators, and price action strategies.</p>
+                        <a href="#" class="text-green-600 font-medium flex items-center">
+                            Start Learning <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-sm card-hover">
+                    <div class="h-40 bg-purple-600 flex items-center justify-center">
+                        <i class="fas fa-robot text-white text-5xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Algorithmic Trading</h3>
+                        <p class="text-gray-600 mb-4">Discover how our automated systems identify trading opportunities.</p>
+                        <a href="#" class="text-purple-600 font-medium flex items-center">
+                            Start Learning <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-8">
+                <button class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition">View All Educational Resources</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">What Our Clients Say</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Hear from traders who have experienced our platform firsthand.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                            <span class="text-blue-600 font-bold">JS</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">James Smith</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"I was skeptical at first, but after three months with ForexEdge, my account has grown by 82%. Their risk management is impressive."</p>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mr-4">
+                            <span class="text-purple-600 font-bold">MR</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Maria Rodriguez</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"The educational resources alone are worth it. I've learned so much while earning consistent returns on my investments."</p>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mr-4">
+                            <span class="text-green-600 font-bold">TK</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Thomas Kim</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"After losing money with other services, I was hesitant. But ForexEdge's transparent approach and consistent results won me over."</p>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center">
+                <button class="bg-white border border-blue-600 text-blue-600 px-6 py-2 rounded hover:bg-blue-50 transition">Read More Testimonials</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Section -->
+    <section class="py-16 bg-blue-600 text-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <h2 class="text-3xl font-bold mb-4">Your Security Is Our Priority</h2>
+                    <p class="mb-6 opacity-90">We implement bank-level security measures to protect your data and investments.</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="bg-white bg-opacity-20 p-2 rounded-full mr-4">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">256-bit SSL Encryption</h4>
+                                <p class="text-sm opacity-80">All data transmissions are encrypted for maximum security.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-white bg-opacity-20 p-2 rounded-full mr-4">
+                                <i class="fas fa-user-shield"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Two-Factor Authentication</h4>
+                                <p class="text-sm opacity-80">Add an extra layer of security to your account.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-white bg-opacity-20 p-2 rounded-full mr-4">
+                                <i class="fas fa-vault"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Segregated Client Funds</h4>
+                                <p class="text-sm opacity-80">Your money is held in top-tier banks, separate from our accounts.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 md:pl-12">
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Security" class="rounded-lg shadow-lg w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Contact Us</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Have questions? Our support team is ready to assist you.</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <div class="bg-gray-100 p-6 rounded-lg h-full">
+                        <h3 class="text-xl font-bold mb-4">Get In Touch</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-2 rounded-full mr-4">
+                                    <i class="fas fa-map-marker-alt text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Headquarters</h4>
+                                    <p class="text-gray-600">123 Financial District, New York, NY 10005</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-green-100 p-2 rounded-full mr-4">
+                                    <i class="fas fa-phone-alt text-green-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Phone</h4>
+                                    <p class="text-gray-600">+1 (555) 123-4567</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-purple-100 p-2 rounded-full mr-4">
+                                    <i class="fas fa-envelope text-purple-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Email</h4>
+                                    <p class="text-gray-600">support@forexedge.com</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-bold mb-4">Support Hours</h4>
+                            <p class="text-gray-600 mb-2">Monday - Friday: 24 hours</p>
+                            <p class="text-gray-600">Saturday: 8:00 AM - 10:00 PM GMT</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <form class="bg-gray-100 p-6 rounded-lg">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="block text-gray-700 mb-1">First Name</label>
+                                <input type="text" class="w-full p-2 border rounded">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-1">Last Name</label>
+                                <input type="text" class="w-full p-2 border rounded">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="block text-gray-700 mb-1">Email</label>
+                            <input type="email" class="w-full p-2 border rounded">
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="block text-gray-700 mb-1">Subject</label>
+                            <select class="w-full p-2 border rounded">
+                                <option>General Inquiry</option>
+                                <option>Account Support</option>
+                                <option>Trading Questions</option>
+                                <option>Technical Support</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="block text-gray-700 mb-1">Message</label>
+                            <textarea class="w-full p-2 border rounded" rows="4"></textarea>
+                        </div>
+                        
+                        <button class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="py-12 bg-blue-600 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold mb-4">Ready to Start Trading?</h2>
+            <p class="text-xl mb-6 max-w-2xl mx-auto">Join ForexEdge today and take the first step toward achieving your financial goals.</p>
+            <button class="bg-white text-blue-600 px-8 py-3 rounded-md font-bold hover:bg-gray-100 transition">Open Your Account Now</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-chart-line text-blue-400 text-2xl"></i>
+                        <span class="text-xl font-bold">ForexEdge</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">Premium forex trading solutions with a focus on consistent returns and risk management.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="#plans" class="text-gray-400 hover:text-white">Investment Plans</a></li>
+                        <li><a href="#testimonials" class="text-gray-400 hover:text-white">Testimonials</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Risk Disclosure</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">AML Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Refund Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Subscribe to receive market updates and trading insights.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Your email" class="p-2 rounded-l text-gray-900 w-full">
+                        <button class="bg-blue-600 px-4 rounded-r hover:bg-blue-700 transition">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="pt-6 border-t border-gray-800 text-center text-gray-400 text-sm">
+                <p>© 2023 ForexEdge. All rights reserved. Forex trading involves substantial risk of loss and is not suitable for all investors.</p>
+                <p class="mt-2">ForexEdge is a trading name of ForexEdge Ltd, registered in New York, USA.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Live Chat Button -->
+    <div class="fixed bottom-6 right-6">
+        <button class="bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition">
+            <i class="fas fa-comment-dots text-xl"></i>
+        </button>
+    </div>
+
+    <script>
+        // Simple script for demonstration purposes
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update the investment calculator when slider changes
+            const investmentSlider = document.querySelector('input[type="range"]');
+            const investmentDisplay = document.querySelector('.bg-blue-800.bg-opacity-50 p:first-child .font-bold');
+            
+            if(investmentSlider && investmentDisplay) {
+                investmentSlider.addEventListener('input', function() {
+                    const investment = parseFloat(this.value);
+                    const monthlyReturn = investment * 0.25;
+                    const annualReturn = monthlyReturn * 12;
+                    
+                    investmentDisplay.textContent = '$' + monthlyReturn.toFixed(2);
+                    document.querySelector('.bg-blue-800.bg-opacity-50 p:last-child .font-bold').textContent = '$' + annualReturn.toFixed(2);
+                });
+            }
+            
+            // Simple navigation smooth scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ForexEdge | Premium Forex Trading Platform</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .hero-gradient {
@@ -17,18 +18,38 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
         }
-        .blink {
-            animation: blink-animation 1.5s infinite;
-        }
-        @keyframes blink-animation {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
         .trading-chart {
             height: 300px;
             background: #1e293b;
             border-radius: 0.5rem;
+        }
+        .whatsapp-button {
+            background-color: #25D366;
+            transition: all 0.3s ease;
+        }
+        .whatsapp-button:hover {
+            background-color: #128C7E;
+            transform: translateY(-2px);
+        }
+        .trade-now-button {
+            background: linear-gradient(135deg, #0ea5e9 0%, #1e3a8a 100%);
+            transition: all 0.3s ease;
+        }
+        .trade-now-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(14, 165, 233, 0.3);
+        }
+        .currency-tab.active {
+            border-bottom: 3px solid #0ea5e9;
+            color: #0ea5e9;
+            font-weight: 600;
+        }
+        .ticker {
+            animation: ticker-animation 15s linear infinite;
+        }
+        @keyframes ticker-animation {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
         }
     </style>
 </head>
@@ -47,7 +68,7 @@
                 <a href="#plans" class="text-gray-700 hover:text-blue-600">Investment Plans</a>
                 <a href="#testimonials" class="text-gray-700 hover:text-blue-600">Testimonials</a>
                 <a href="#contact" class="text-gray-700 hover:text-blue-600">Contact</a>
-                <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">Login</a>
+                <a href="login.html" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">Login</a>
             </div>
             
             <button class="md:hidden text-gray-700">
@@ -55,6 +76,42 @@
             </button>
         </div>
     </nav>
+
+    <!-- Live Market Ticker -->
+    <div class="bg-gray-800 text-white py-2 overflow-hidden">
+        <div class="ticker flex space-x-8 whitespace-nowrap">
+            <div class="flex items-center">
+                <span class="text-green-400 font-bold mr-2">EUR/USD</span>
+                <span>1.0874</span>
+                <span class="text-green-400 ml-2">+0.24%</span>
+            </div>
+            <div class="flex items-center">
+                <span class="text-red-400 font-bold mr-2">GBP/USD</span>
+                <span>1.2712</span>
+                <span class="text-red-400 ml-2">-0.12%</span>
+            </div>
+            <div class="flex items-center">
+                <span class="text-green-400 font-bold mr-2">USD/JPY</span>
+                <span>143.25</span>
+                <span class="text-green-400 ml-2">+0.38%</span>
+            </div>
+            <div class="flex items-center">
+                <span class="font-bold mr-2">XAU/USD</span>
+                <span>1928.40</span>
+                <span class="text-green-400 ml-2">+0.56%</span>
+            </div>
+            <div class="flex items-center">
+                <span class="text-red-400 font-bold mr-2">USD/CAD</span>
+                <span>1.3578</span>
+                <span class="text-red-400 ml-2">-0.18%</span>
+            </div>
+            <div class="flex items-center">
+                <span class="font-bold mr-2">AUD/USD</span>
+                <span>0.6572</span>
+                <span class="text-green-400 ml-2">+0.32%</span>
+            </div>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section id="home" class="hero-gradient text-white py-16 md:py-24">
@@ -90,35 +147,35 @@
                     
                     <div class="mb-4">
                         <label class="block text-sm mb-1">Investment Amount ($)</label>
-                        <input type="range" min="500" max="100000" value="5000" step="500" class="w-full mb-2">
+                        <input id="investmentAmount" type="range" min="500" max="100000" value="5000" step="500" class="w-full mb-2">
                         <div class="flex justify-between">
                             <span>$500</span>
-                            <span class="font-bold">$5,000</span>
+                            <span id="currentAmount" class="font-bold">$5,000</span>
                             <span>$100K</span>
                         </div>
                     </div>
                     
                     <div class="mb-4">
                         <label class="block text-sm mb-1">Investment Plan</label>
-                        <select class="w-full p-2 rounded bg-white bg-opacity-10 border border-white border-opacity-20">
-                            <option>Standard (25% monthly)</option>
-                            <option>Premium (30% monthly)</option>
-                            <option>Professional (35% monthly)</option>
+                        <select id="investmentPlan" class="w-full p-2 rounded bg-white bg-opacity-10 border border-white border-opacity-20">
+                            <option value="25">Standard (25% monthly)</option>
+                            <option value="30">Premium (30% monthly)</option>
+                            <option value="35">Professional (35% monthly)</option>
                         </select>
                     </div>
                     
                     <div class="bg-blue-800 bg-opacity-50 p-4 rounded-lg mb-4">
                         <div class="flex justify-between mb-1">
                             <span>Estimated Monthly Return:</span>
-                            <span class="font-bold">$1,250</span>
+                            <span id="monthlyReturn" class="font-bold">$1,250</span>
                         </div>
                         <div class="flex justify-between">
                             <span>Projected Annual Return:</span>
-                            <span class="font-bold">$15,000</span>
+                            <span id="annualReturn" class="font-bold">$15,000</span>
                         </div>
                     </div>
                     
-                    <button class="w-full bg-yellow-400 text-blue-900 py-2 rounded font-bold hover:bg-yellow-300 transition">Start Investing</button>
+                    <a href="#plans" class="w-full bg-yellow-400 text-blue-900 py-2 rounded font-bold hover:bg-yellow-300 transition block text-center">Start Investing</a>
                     
                     <p class="text-xs text-center mt-3 text-blue-200">*Projections are estimates only. Past performance is not indicative of future results.</p>
                 </div>
@@ -215,17 +272,20 @@
             
             <div class="bg-gray-100 rounded-xl overflow-hidden shadow-lg">
                 <div class="flex border-b">
-                    <button class="px-6 py-3 font-medium border-b-2 border-blue-600 text-blue-600">EUR/USD</button>
-                    <button class="px-6 py-3 font-medium text-gray-600 hover:text-blue-600">GBP/USD</button>
-                    <button class="px-6 py-3 font-medium text-gray-600 hover:text-blue-600">USD/JPY</button>
-                    <button class="px-6 py-3 font-medium text-gray-600 hover:text-blue-600">XAU/USD</button>
+                    <button class="currency-tab active px-6 py-3 font-medium" data-pair="EUR/USD">EUR/USD</button>
+                    <button class="currency-tab px-6 py-3 font-medium text-gray-600" data-pair="GBP/USD">GBP/USD</button>
+                    <button class="currency-tab px-6 py-3 font-medium text-gray-600" data-pair="USD/JPY">USD/JPY</button>
+                    <button class="currency-tab px-6 py-3 font-medium text-gray-600" data-pair="XAU/USD">XAU/USD</button>
                 </div>
                 
                 <div class="p-4">
-                    <div class="trading-chart flex items-center justify-center">
-                        <div class="text-center text-gray-400">
-                            <i class="fas fa-chart-line text-4xl mb-2"></i>
-                            <p>Live Trading Charts</p>
+                    <div class="trading-chart relative">
+                        <canvas id="tradingChart"></canvas>
+                        <div class="absolute top-4 right-4 flex space-x-2">
+                            <button class="bg-white bg-opacity-20 text-white px-3 py-1 rounded text-sm">1H</button>
+                            <button class="bg-blue-600 text-white px-3 py-1 rounded text-sm">4H</button>
+                            <button class="bg-white bg-opacity-20 text-white px-3 py-1 rounded text-sm">1D</button>
+                            <button class="bg-white bg-opacity-20 text-white px-3 py-1 rounded text-sm">1W</button>
                         </div>
                     </div>
                     
@@ -233,9 +293,9 @@
                         <div class="bg-white p-4 rounded-lg shadow">
                             <div class="flex justify-between items-center mb-2">
                                 <span class="font-bold">EUR/USD</span>
-                                <span class="text-green-500">+0.24%</span>
+                                <span id="eurusd-change" class="text-green-500">+0.24%</span>
                             </div>
-                            <div class="text-2xl font-bold">1.0987</div>
+                            <div id="eurusd-price" class="text-2xl font-bold">1.0987</div>
                             <div class="flex justify-between text-sm text-gray-500 mt-1">
                                 <span>High: 1.1024</span>
                                 <span>Low: 1.0955</span>
@@ -245,9 +305,9 @@
                         <div class="bg-white p-4 rounded-lg shadow">
                             <div class="flex justify-between items-center mb-2">
                                 <span class="font-bold">GBP/USD</span>
-                                <span class="text-red-500">-0.12%</span>
+                                <span id="gbpusd-change" class="text-red-500">-0.12%</span>
                             </div>
-                            <div class="text-2xl font-bold">1.2755</div>
+                            <div id="gbpusd-price" class="text-2xl font-bold">1.2755</div>
                             <div class="flex justify-between text-sm text-gray-500 mt-1">
                                 <span>High: 1.2810</span>
                                 <span>Low: 1.2732</span>
@@ -257,9 +317,9 @@
                         <div class="bg-white p-4 rounded-lg shadow">
                             <div class="flex justify-between items-center mb-2">
                                 <span class="font-bold">USD/JPY</span>
-                                <span class="text-green-500">+0.35%</span>
+                                <span id="usdjpy-change" class="text-green-500">+0.35%</span>
                             </div>
-                            <div class="text-2xl font-bold">143.22</div>
+                            <div id="usdjpy-price" class="text-2xl font-bold">143.22</div>
                             <div class="flex justify-between text-sm text-gray-500 mt-1">
                                 <span>High: 143.45</span>
                                 <span>Low: 142.80</span>
@@ -311,7 +371,9 @@
                             </li>
                         </ul>
                         
-                        <button class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">Choose Plan</button>
+                        <a href="https://wa.me/19452332148" target="_blank" class="w-full whatsapp-button text-white py-2 rounded flex items-center justify-center">
+                            <i class="fab fa-whatsapp mr-2 text-lg"></i> Choose Plan
+                        </a>
                     </div>
                 </div>
                 
@@ -351,7 +413,9 @@
                             </li>
                         </ul>
                         
-                        <button class="w-full bg-purple-600 text-white py-2 rounded hover:bg-purple-700 transition">Choose Plan</button>
+                        <a href="https://wa.me/19452332148" target="_blank" class="w-full whatsapp-button text-white py-2 rounded flex items-center justify-center">
+                            <i class="fab fa-whatsapp mr-2 text-lg"></i> Choose Plan
+                        </a>
                     </div>
                 </div>
                 
@@ -390,7 +454,9 @@
                             </li>
                         </ul>
                         
-                        <button class="w-full bg-gray-800 text-white py-2 rounded hover:bg-gray-900 transition">Choose Plan</button>
+                        <a href="https://wa.me/19452332148" target="_blank" class="w-full whatsapp-button text-white py-2 rounded flex items-center justify-center">
+                            <i class="fab fa-whatsapp mr-2 text-lg"></i> Choose Plan
+                        </a>
                     </div>
                 </div>
             </div>
@@ -417,8 +483,8 @@
                     <div class="p-6">
                         <h3 class="font-bold text-xl mb-2">Beginner's Guide</h3>
                         <p class="text-gray-600 mb-4">Learn the fundamentals of forex trading from the ground up.</p>
-                        <a href="#" class="text-blue-600 font-medium flex items-center">
-                            Start Learning <i class="fas fa-arrow-right ml-2"></i>
+                        <a href="/pdf/forex-beginners-guide.pdf" target="_blank" class="inline-block bg-blue-600 text-white px-4 py-2 rounded font-medium hover:bg-blue-700 transition">
+                            Download PDF <i class="fas fa-download ml-2"></i>
                         </a>
                     </div>
                 </div>
@@ -430,8 +496,8 @@
                     <div class="p-6">
                         <h3 class="font-bold text-xl mb-2">Technical Analysis</h3>
                         <p class="text-gray-600 mb-4">Master chart patterns, indicators, and price action strategies.</p>
-                        <a href="#" class="text-green-600 font-medium flex items-center">
-                            Start Learning <i class="fas fa-arrow-right ml-2"></i>
+                        <a href="/pdf/technical-analysis-handbook.pdf" target="_blank" class="inline-block bg-green-600 text-white px-4 py-2 rounded font-medium hover:bg-green-700 transition">
+                            Download PDF <i class="fas fa-download ml-2"></i>
                         </a>
                     </div>
                 </div>
@@ -443,8 +509,8 @@
                     <div class="p-6">
                         <h3 class="font-bold text-xl mb-2">Algorithmic Trading</h3>
                         <p class="text-gray-600 mb-4">Discover how our automated systems identify trading opportunities.</p>
-                        <a href="#" class="text-purple-600 font-medium flex items-center">
-                            Start Learning <i class="fas fa-arrow-right ml-2"></i>
+                        <a href="/pdf/algorithmic-trading-strategies.pdf" target="_blank" class="inline-block bg-purple-600 text-white px-4 py-2 rounded font-medium hover:bg-purple-700 transition">
+                            Download PDF <i class="fas fa-download ml-2"></i>
                         </a>
                     </div>
                 </div>
@@ -525,10 +591,6 @@
                     <p class="text-gray-600">"After losing money with other services, I was hesitant. But ForexEdge's transparent approach and consistent results won me over."</p>
                 </div>
             </div>
-            
-            <div class="mt-8 text-center">
-                <button class="bg-white border border-blue-600 text-blue-600 px-6 py-2 rounded hover:bg-blue-50 transition">Read More Testimonials</button>
-            </div>
         </div>
     </section>
 
@@ -548,16 +610,6 @@
                             <div>
                                 <h4 class="font-bold mb-1">256-bit SSL Encryption</h4>
                                 <p class="text-sm opacity-80">All data transmissions are encrypted for maximum security.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="bg-white bg-opacity-20 p-2 rounded-full mr-4">
-                                <i class="fas fa-user-shield"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold mb-1">Two-Factor Authentication</h4>
-                                <p class="text-sm opacity-80">Add an extra layer of security to your account.</p>
                             </div>
                         </div>
                         
@@ -595,22 +647,12 @@
                         
                         <div class="space-y-4">
                             <div class="flex items-start">
-                                <div class="bg-blue-100 p-2 rounded-full mr-4">
-                                    <i class="fas fa-map-marker-alt text-blue-600"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold mb-1">Headquarters</h4>
-                                    <p class="text-gray-600">123 Financial District, New York, NY 10005</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start">
                                 <div class="bg-green-100 p-2 rounded-full mr-4">
                                     <i class="fas fa-phone-alt text-green-600"></i>
                                 </div>
                                 <div>
                                     <h4 class="font-bold mb-1">Phone</h4>
-                                    <p class="text-gray-600">+1 (555) 123-4567</p>
+                                    <p class="text-gray-600">+19452332148</p>
                                 </div>
                             </div>
                             
@@ -620,7 +662,17 @@
                                 </div>
                                 <div>
                                     <h4 class="font-bold mb-1">Email</h4>
-                                    <p class="text-gray-600">support@forexedge.com</p>
+                                    <p class="text-gray-600">forexedge6l@gmail.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-2 rounded-full mr-4">
+                                    <i class="fab fa-whatsapp text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">WhatsApp</h4>
+                                    <p class="text-gray-600">+19452332148</p>
                                 </div>
                             </div>
                         </div>
@@ -666,7 +718,9 @@
                             <textarea class="w-full p-2 border rounded" rows="4"></textarea>
                         </div>
                         
-                        <button class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">Send Message</button>
+                        <a href="mailto:forexedge6l@gmail.com" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition block text-center">
+                            Send Message
+                        </a>
                     </form>
                 </div>
             </div>
@@ -678,14 +732,16 @@
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-2xl md:text-3xl font-bold mb-4">Ready to Start Trading?</h2>
             <p class="text-xl mb-6 max-w-2xl mx-auto">Join ForexEdge today and take the first step toward achieving your financial goals.</p>
-            <button class="bg-white text-blue-600 px-8 py-3 rounded-md font-bold hover:bg-gray-100 transition">Open Your Account Now</button>
+            <a href="#plans" class="inline-block trade-now-button text-white px-8 py-3 rounded-md font-bold">
+                Trade Now
+            </a>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white pt-12 pb-6">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                 <div>
                     <div class="flex items-center space-x-2 mb-4">
                         <i class="fas fa-chart-line text-blue-400 text-2xl"></i>
@@ -693,10 +749,9 @@
                     </div>
                     <p class="text-gray-400 mb-4">Premium forex trading solutions with a focus on consistent returns and risk management.</p>
                     <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/19452332148" target="_blank" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-whatsapp text-xl"></i>
+                        </a>
                     </div>
                 </div>
                 
@@ -708,17 +763,6 @@
                         <li><a href="#plans" class="text-gray-400 hover:text-white">Investment Plans</a></li>
                         <li><a href="#testimonials" class="text-gray-400 hover:text-white">Testimonials</a></li>
                         <li><a href="#contact" class="text-gray-400 hover:text-white">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="font-bold text-lg mb-4">Legal</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Risk Disclosure</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">AML Policy</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Refund Policy</a></li>
                     </ul>
                 </div>
                 
@@ -743,30 +787,31 @@
 
     <!-- Live Chat Button -->
     <div class="fixed bottom-6 right-6">
-        <button class="bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition">
-            <i class="fas fa-comment-dots text-xl"></i>
-        </button>
+        <a href="https://wa.me/19452332148" target="_blank" class="bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition">
+            <i class="fab fa-whatsapp text-xl"></i>
+        </a>
     </div>
 
     <script>
-        // Simple script for demonstration purposes
         document.addEventListener('DOMContentLoaded', function() {
-            // Update the investment calculator when slider changes
-            const investmentSlider = document.querySelector('input[type="range"]');
-            const investmentDisplay = document.querySelector('.bg-blue-800.bg-opacity-50 p:first-child .font-bold');
-            
-            if(investmentSlider && investmentDisplay) {
-                investmentSlider.addEventListener('input', function() {
-                    const investment = parseFloat(this.value);
-                    const monthlyReturn = investment * 0.25;
-                    const annualReturn = monthlyReturn * 12;
-                    
-                    investmentDisplay.textContent = '$' + monthlyReturn.toFixed(2);
-                    document.querySelector('.bg-blue-800.bg-opacity-50 p:last-child .font-bold').textContent = '$' + annualReturn.toFixed(2);
-                });
+            // Investment Calculator Functionality
+            function updateCalculator() {
+                const amount = parseFloat(document.getElementById('investmentAmount').value);
+                const rate = parseFloat(document.getElementById('investmentPlan').value) / 100;
+                
+                const monthly = amount * rate;
+                const yearly = monthly * 12;
+                
+                document.getElementById('currentAmount').textContent = '$' + amount.toLocaleString();
+                document.getElementById('monthlyReturn').textContent = '$' + monthly.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                document.getElementById('annualReturn').textContent = '$' + yearly.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
             }
             
-            // Simple navigation smooth scroll
+            document.getElementById('investmentAmount').addEventListener('input', updateCalculator);
+            document.getElementById('investmentPlan').addEventListener('change', updateCalculator);
+            updateCalculator();
+            
+            // Smooth Scrolling
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -782,7 +827,134 @@
                     }
                 });
             });
+            
+            // Real-time Trading Platform
+            const currencies = {
+                'EUR/USD': { price: 1.0874, change: 0.24, high: 1.1024, low: 1.0955 },
+                'GBP/USD': { price: 1.2712, change: -0.12, high: 1.2810, low: 1.2732 },
+                'USD/JPY': { price: 143.25, change: 0.35, high: 143.45, low: 142.80 },
+                'XAU/USD': { price: 1928.40, change: 0.56, high: 1932.10, low: 1925.30 }
+            };
+            
+            // Initialize chart
+            const ctx = document.getElementById('tradingChart').getContext('2d');
+            let chart;
+            
+            function initChart(pair) {
+                if (chart) chart.destroy();
+                
+                const data = [];
+                let currentValue = currencies[pair].price;
+                
+                // Generate chart data
+                for (let i = 0; i < 50; i++) {
+                    const fluctuation = (Math.random() - 0.5) * 0.1;
+                    currentValue = currentValue * (1 + fluctuation / 100);
+                    data.push(currentValue);
+                }
+                
+                chart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: Array.from({length: 50}, (_, i) => i),
+                        datasets: [{
+                            label: pair,
+                            data: data,
+                            borderColor: '#0ea5e9',
+                            backgroundColor: 'rgba(14, 165, 233, 0.1)',
+                            borderWidth: 2,
+                            pointRadius: 0,
+                            fill: true,
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            x: {
+                                display: false
+                            },
+                            y: {
+                                display: true,
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0.1)'
+                                },
+                                ticks: {
+                                    color: '#94a3b8'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+            
+            // Initialize with EUR/USD
+            initChart('EUR/USD');
+            
+            // Currency tab switching
+            document.querySelectorAll('.currency-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Update active tab
+                    document.querySelectorAll('.currency-tab').forEach(t => {
+                        t.classList.remove('active', 'text-blue-600');
+                        t.classList.add('text-gray-600');
+                    });
+                    this.classList.add('active', 'text-blue-600');
+                    this.classList.remove('text-gray-600');
+                    
+                    // Update chart
+                    const pair = this.getAttribute('data-pair');
+                    initChart(pair);
+                });
+            });
+            
+            // Real-time price updates
+            function updatePrices() {
+                Object.keys(currencies).forEach(pair => {
+                    const currency = currencies[pair];
+                    
+                    // Simulate price movement
+                    const fluctuation = (Math.random() - 0.5) * 0.1;
+                    currency.price = currency.price * (1 + fluctuation / 100);
+                    currency.change = fluctuation;
+                    
+                    // Update DOM if element exists
+                    const priceElement = document.getElementById(`${pair.toLowerCase().replace('/', '')}-price`);
+                    const changeElement = document.getElementById(`${pair.toLowerCase().replace('/', '')}-change`);
+                    
+                    if (priceElement) {
+                        priceElement.textContent = currency.price.toFixed(pair === 'XAU/USD' ? 2 : 4);
+                    }
+                    
+                    if (changeElement) {
+                        changeElement.textContent = `${fluctuation > 0 ? '+' : ''}${fluctuation.toFixed(2)}%`;
+                        changeElement.className = `text-${fluctuation > 0 ? 'green' : 'red'}-500`;
+                    }
+                });
+                
+                // Update chart data
+                const activePair = document.querySelector('.currency-tab.active').getAttribute('data-pair');
+                const newValue = currencies[activePair].price;
+                chart.data.datasets[0].data.push(newValue);
+                chart.data.datasets[0].data.shift();
+                chart.update();
+            }
+            
+            // Update prices every 3 seconds
+            setInterval(updatePrices, 3000);
+            
+            // Ticker animation
+            const ticker = document.querySelector('.ticker');
+            const tickerWidth = ticker.scrollWidth;
+            document.documentElement.style.setProperty('--ticker-width', `-${tickerWidth}px`);
         });
     </script>
 </body>
 </html>
+
